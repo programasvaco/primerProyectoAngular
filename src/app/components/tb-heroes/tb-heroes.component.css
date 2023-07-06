@@ -1,0 +1,19 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .logo-hero-image {
+    /*background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');*/
+    /* background-size: cover; */
+    width: 100%;
+    height: auto;
+  }
+
+  td, th {
+    width: 25%;
+  }
