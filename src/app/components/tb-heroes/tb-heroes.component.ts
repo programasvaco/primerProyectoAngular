@@ -20,12 +20,12 @@ export class TbHeroesComponent implements OnInit  {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
     this.paginator = mp;
-    this.setDataSourceAttributes();
+    //this.setDataSourceAttributes();
     }
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatSort) set matSort(mt: MatSort) {
     this.sort = mt;
-    this.setDataSourceAttributes();    
+    //this.setDataSourceAttributes();    
   }
 
   constructor(
@@ -33,24 +33,21 @@ export class TbHeroesComponent implements OnInit  {
   ) { } 
   
   ngOnInit() {
-   this.getHeroes();
-   
+    this.getHeroes();
+    
   }
 
-  async getHeroes() {
-    // this.listHeroes = await this.heroService.getHeroes().toPromise();
-
-    try {
-      this.listHeroes = await this.heroService.getHeroes().toPromise();
-      console.log('aqui: ', this.listHeroes)
-    } catch (error) {
-      console.error(error);
-    } 
-
+  async getHeroes(){
+    await this.getHeroesPromise().then(result => {
+      this.listHeroes = result;
+    });
     this.dataSource = new MatTableDataSource(this.listHeroes);
-
+    this.setDataSourceAttributes();
   }
 
+  async getHeroesPromise(){
+    return await this.heroService.getHeroes().toPromise();
+  }
   
 
   applyFilter(event: Event) {
